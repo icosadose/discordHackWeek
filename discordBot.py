@@ -1,8 +1,8 @@
 import discord
-import json
-import random as r
+import googletrans
 
 client = discord.Client()
+
 
 @client.event
 async def on_ready():
@@ -10,13 +10,20 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+    print(message.author, message.channel, message.content)
     if message.author == client.user:
         return
 
-    if message.content.startswith("$hello"):
-        await message.channel.send("Hello!")
-    
-    if message.content.startswith("$text"):
-        await message.channel.send("*text* **text** ***text*** __text__ ~~text~~ `text`")
+    if message.content.startswith("$version"):
+        await message.channel.send(discord.__version__)
 
-client.run('discord bot token')
+    if message.content.startswith("$help"):
+        await message.channel.send("""
+        `$help 1 - commands`\n
+        `$help 2 - languages`\n
+        """)
+
+    if message.content.startswith("$language"):
+
+
+client.run("discord bot token")
