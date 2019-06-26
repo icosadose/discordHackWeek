@@ -48,7 +48,7 @@ async def on_message(message):
         *Current Commands For The Bot*
         `$help`     - Displays the help menu
         `$version`  - Displays the version of discord.py the bot uses
-        `$langChange` - Allows a user to change the target language
+        `$langChange` - Allows a user to change the target language. By default the target language is English.
         """)
 
     if message.content.startswith("$langList"):
