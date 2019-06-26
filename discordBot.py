@@ -54,4 +54,4 @@ async def on_message(message):
     if message.content.startswith("$langList"):
         await message.channel.send("A full list of languages used and language codes can be found at https://py-googletrans.readthedocs.io/en/latest/")
 
-client.run("NTkyNzcyNzQ3NjQyNDA0ODc2.XREtug.X42RrVIQF8CerKizmZZzChkcuwE")
+client.run("discord bot token")
