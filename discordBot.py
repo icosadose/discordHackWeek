@@ -18,19 +18,17 @@ async def on_message(message):
     print(targetLang)
     print(messageLang)
 
-    if message.content.startswith("$") == False:
+    if message.content.startswith("$") == False and message.author.bot == False:
         if messageLang != targetLang:
             output = translator.translate(messageRaw, targetLang)
-            await message.channel.send(output)
+            await message.channel.send(output.text)
 
-    if message.content.startswith("$language"):
+    if message.content.startswith("$langChange"):
         words = messageRaw.split()
-        if len(words[1]) < 2 or len(words[1]) > 2:
+        if words[1] not in LANGUAGES:
             await message.channel.send("Invalid language! Check the list using `$help 2`")
         else:
             targetLang = words[1]
-            changeLang = "The language will be changed to " + targetLang
-            await message.channel.send(changeLang)
 
     if message.author == client.user:
         return
@@ -41,20 +39,19 @@ async def on_message(message):
     if message.content.startswith("$help"):
         await message.channel.send("""
         *Help Menu*
-        `$help 1 - commands`
-        `$help 2 - languages`
+        `$commands  - commands the bot runs`
+        `$langList - languages the bot supports`
         """)
     
-    if message.content.startswith("$help 1"):
+    if message.content.startswith("$commands"):
         await message.channel.send("""
         *Current Commands For The Bot*
         `$help`     - Displays the help menu
-        `$version`  - Displays the version of discord.py
-        `$language` - Allows a user to change the target language
-        `$test`     - Returns content of a message
+        `$version`  - Displays the version of discord.py the bot uses
+        `$langChange` - Allows a user to change the target language
         """)
 
-    if message.content.startswith("$test"):
-        pass
+    if message.content.startswith("$langList"):
+        await message.channel.send("A full list of languages used and language codes can be found at https://py-googletrans.readthedocs.io/en/latest/")
 
-client.run("discord bot token")
+client.run("NTkyNzcyNzQ3NjQyNDA0ODc2.XREtug.X42RrVIQF8CerKizmZZzChkcuwE")
